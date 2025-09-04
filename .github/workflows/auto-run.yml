@@ -1,0 +1,23 @@
+name: Run car discount automation
+
+on:
+  schedule:
+    # UTC time; corresponds to Beijing 10:00 and 15:00
+    - cron: '0 2 * * *'
+    - cron: '0 7 * * *'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run automation script
+        env:
+          BROWSERLESS_API_KEY: ${{ secrets.BROWSERLESS_API_KEY }}
+        run: node index.js
