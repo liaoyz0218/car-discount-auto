@@ -1,10 +1,10 @@
 name: Run car discount automation
 
 on:
-  schedule:
-    # UTC time; corresponds to Beijing 10:00 and 15:00
-    - cron: '0 2 * * *'
-    - cron: '0 7 * * *'
+    workflow_dispatch:
+    schedule:
+      - cron: '0 2 * * *'
+      - cron: '0 7 * * *'
 
 jobs:
   run-script:
